@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lê Khánh Hà — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #fdf7fb;
+    --bg-soft: #f6ecfb;
+    --ink: #3a2145;
+    --muted: #7d6690;
+    --accent: #b25fdb;      /* orchid purple */
+    --accent-deep: #6f4e9e; /* deep violet */
+    --sakura: #f3a8c8;      /* sakura pink */
+    --gold: #cdab6a;        /* quiet gold line */
+    --line: #e9d7f2;
+    --card: #ffffff;
+    --shadow: 0 18px 40px -20px rgba(111,78,158,0.35);
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(243,168,200,0.16), transparent 42%),
+      radial-gradient(circle at 88% 18%, rgba(178,95,219,0.14), transparent 45%),
+      radial-gradient(circle at 50% 95%, rgba(205,171,106,0.10), transparent 40%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Quicksand', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family:'Playfair Display', serif; margin:0; }
+  .jp{ font-family:'Noto Serif JP', serif; }
+  a{ text-decoration:none; color:inherit; }
+  ::selection{ background:var(--sakura); color:#fff; }
+
+  /* ---------- petals ---------- */
+  .petal{
+    position:fixed; top:-40px; z-index:2; pointer-events:none;
+    width:14px; height:14px; opacity:.75;
+    animation: fall linear infinite;
+  }
+  .petal svg{ width:100%; height:100%; }
+  @keyframes fall{
+    0%{ transform:translateY(-5vh) translateX(0) rotate(0deg); }
+    100%{ transform:translateY(105vh) translateX(40px) rotate(340deg); }
+  }
+
+  /* ---------- top nav ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 6vw;
+    transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
+  }
+  header.nav.solid{
+    background:rgba(253,247,251,0.82);
+    backdrop-filter:blur(14px);
+    box-shadow:0 8px 26px -18px rgba(111,78,158,0.4);
+    padding:12px 6vw;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Playfair Display', serif; font-weight:700; font-size:20px; color:var(--accent-deep);
+  }
+  .logo .mark{
+    width:34px; height:34px; border-radius:50%;
+    background:linear-gradient(135deg, var(--sakura), var(--accent));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Noto Serif JP', serif; font-size:16px; font-weight:700;
+  }
+  nav.links{ display:flex; gap:36px; }
+  nav.links a{
+    position:relative; font-size:14.5px; font-weight:600; color:var(--muted);
+    letter-spacing:.2px; padding:4px 0; transition:color .25s ease;
+  }
+  nav.links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+    background:linear-gradient(90deg, var(--sakura), var(--accent));
+    transition:width .3s ease;
+  }
+  nav.links a.active, nav.links a:hover{ color:var(--accent-deep); }
+  nav.links a.active::after, nav.links a:hover::after{ width:100%; }
+
+  .m-toggle{ display:none; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:grid; grid-template-columns:1.15fr .85fr;
+    align-items:center; gap:40px;
+    padding:150px 6vw 90px;
+    position:relative;
+  }
+  .hero-vert{
+    position:absolute; right:calc(6vw + 250px); top:120px;
+    writing-mode:vertical-rl; font-family:'Noto Serif JP', serif;
+    font-size:15px; letter-spacing:6px; color:var(--accent-deep); opacity:.55;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12.5px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--accent-deep); font-weight:700; margin-bottom:18px;
+  }
+  .eyebrow::before{ content:''; width:26px; height:1px; background:var(--gold); }
+  .hero h1{
+    font-size:clamp(42px, 6vw, 74px); font-weight:700; line-height:1.05; color:var(--ink);
+  }
+  .hero h1 em{ font-style:italic; color:var(--accent); font-weight:600; }
+  .hero-sub{
+    margin-top:22px; max-width:560px; font-size:16.5px; line-height:1.85; color:var(--muted);
+  }
+  .hero-meta{
+    margin-top:34px; display:flex; gap:30px; flex-wrap:wrap;
+  }
+  .hero-meta .item{ border-left:2px solid var(--line); padding-left:14px; }
+  .hero-meta .k{ font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--muted); }
+  .hero-meta .v{ font-size:15.5px; font-weight:700; color:var(--ink); margin-top:3px; }
+
+  .hero-actions{ margin-top:38px; display:flex; gap:16px; }
+  .btn{
+    padding:13px 26px; border-radius:999px; font-weight:700; font-size:14.5px;
+    display:inline-flex; align-items:center; gap:8px; transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary{ background:linear-gradient(120deg, var(--sakura), var(--accent)); color:#fff; box-shadow:var(--shadow); }
+  .btn-ghost{ border:1.5px solid var(--line); color:var(--accent-deep); }
+  .btn:hover{ transform:translateY(-3px); }
+
+  .hero-visual{ position:relative; display:flex; justify-content:center; }
+  .frame{
+    width:300px; height:360px; border-radius:150px 150px 20px 20px;
+    background:linear-gradient(160deg, #fff, var(--bg-soft));
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; box-shadow:var(--shadow);
+  }
+  .frame img{ width:88%; height:90%; object-fit:cover; border-radius:140px 140px 12px 12px; }
+  .frame .fallback{
+    display:none; width:88%; height:90%; border-radius:140px 140px 12px 12px;
+    align-items:center; justify-content:center; font-family:'Playfair Display', serif;
+    font-size:56px; color:#fff; background:linear-gradient(160deg, var(--accent), var(--accent-deep));
+  }
+  .ring{
+    position:absolute; inset:-18px; border-radius:160px 160px 30px 30px;
+    border:1.5px dashed var(--gold); opacity:.5;
+  }
+  .sticker{
+    position:absolute; width:52px; height:52px; border-radius:50%;
+    background:#fff; box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center;
+    font-size:22px;
+  }
+  .sticker.s1{ top:14px; left:-16px; }
+  .sticker.s2{ bottom:26px; right:-18px; }
+
+  /* ---------- wave divider ---------- */
+  .wave{ display:block; width:100%; height:60px; margin-top:-2px; }
+
+  /* ---------- section shell ---------- */
+  section{ padding:100px 6vw; position:relative; }
+  .tag{
+    font-size:12.5px; letter-spacing:2.4px; text-transform:uppercase; font-weight:700;
+    color:var(--accent); margin-bottom:10px;
+  }
+  .s-title{ font-size:clamp(28px,3.4vw,40px); font-weight:700; color:var(--ink); }
+  .s-head{ margin-bottom:56px; max-width:640px; }
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- gioi thieu ---------- */
+  .intro-wrap{ display:grid; grid-template-columns:60px 1fr; gap:26px; max-width:820px; }
+  .intro-line{ width:2px; background:linear-gradient(var(--sakura), var(--accent)); border-radius:2px; }
+  .intro-wrap p{ font-size:16.5px; line-height:1.95; color:var(--muted); }
+  .intro-wrap b{ color:var(--ink); font-weight:700; }
+  .intro-wrap .note{ color:var(--accent-deep); font-weight:600; }
+
+  /* ---------- bai tap zigzag timeline ---------- */
+  .timeline{ position:relative; max-width:960px; margin:0 auto; }
+  .timeline::before{
+    content:''; position:absolute; left:50%; top:0; bottom:0; width:2px;
+    background:linear-gradient(var(--sakura), var(--accent) 50%, var(--gold));
+    transform:translateX(-50%);
+  }
+  .tl-item{
+    position:relative; width:47%; margin-bottom:56px;
+    padding:26px 28px; background:var(--card); border-radius:18px;
+    box-shadow:var(--shadow); border:1px solid var(--line);
+  }
+  .tl-item:nth-child(odd){ margin-left:0; }
+  .tl-item:nth-child(even){ margin-left:53%; }
+  .tl-node{
+    position:absolute; top:26px; width:44px; height:44px; border-radius:50%;
+    background:linear-gradient(140deg, var(--sakura), var(--accent-deep));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif JP', serif; font-size:19px; font-weight:700;
+    box-shadow:0 8px 20px -8px rgba(111,78,158,0.6);
+  }
+  .tl-item:nth-child(odd) .tl-node{ right:-64px; }
+  .tl-item:nth-child(even) .tl-node{ left:-64px; }
+  .tl-title{ font-family:'Playfair Display', serif; font-weight:700; font-size:19px; color:var(--ink); margin-bottom:12px; }
+  .tl-chip{ margin-bottom:12px; }
+  .tl-chip .lbl{ font-size:12px; font-weight:700; letter-spacing:.5px; margin-bottom:4px; }
+  .tl-chip.goal .lbl{ color:var(--accent); }
+  .tl-chip.result .lbl{ color:var(--accent-deep); }
+  .tl-chip p{ margin:0; font-size:14.5px; line-height:1.7; color:var(--muted); }
+  .tl-drive{
+    margin-top:14px; display:inline-flex; align-items:center; gap:7px;
+    font-size:13px; font-weight:700; color:var(--accent-deep);
+    border-bottom:1.5px solid var(--gold); padding-bottom:2px;
+  }
+  .tl-drive svg{ width:15px; height:15px; }
+
+  /* ---------- hoc duoc: charm tags ---------- */
+  .charm-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; max-width:1020px; margin:0 auto; }
+  .charm{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:26px 22px; box-shadow:var(--shadow);
+    transition:transform .3s ease;
+  }
+  .charm:nth-child(odd){ transform:rotate(-1.4deg); }
+  .charm:nth-child(even){ transform:rotate(1.4deg); }
+  .charm:hover{ transform:rotate(0deg) translateY(-4px); }
+  .charm .ic{ font-size:26px; margin-bottom:12px; }
+  .charm p{ margin:0; font-size:14.5px; line-height:1.75; color:var(--muted); }
+
+  /* ---------- tong ket ---------- */
+  .quote{
+    max-width:740px; margin:0 auto 60px; text-align:center;
+    font-family:'Playfair Display', serif; font-style:italic; font-size:clamp(20px,2.6vw,27px);
+    color:var(--ink); line-height:1.6;
+  }
+  .quote em{ color:var(--accent); font-style:italic; }
+  .reflect-grid{ display:grid; grid-template-columns:1fr 1fr; gap:44px; max-width:980px; margin:0 auto; }
+  .reflect-col h3{ font-size:18px; margin-bottom:14px; color:var(--accent-deep); }
+  .reflect-col p{ font-size:15px; line-height:1.85; color:var(--muted); margin:0 0 14px; }
+  .badges{ display:flex; justify-content:center; gap:36px; margin-top:70px; flex-wrap:wrap; }
+  .badge{
+    width:126px; height:126px; border-radius:50%;
+    background:conic-gradient(var(--accent) 0deg 360deg, var(--bg-soft) 0deg);
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .badge::before{
+    content:''; position:absolute; inset:7px; border-radius:50%; background:var(--card);
+  }
+  .badge .in{ position:relative; text-align:center; }
+  .badge .num{ font-family:'Playfair Display', serif; font-weight:700; font-size:21px; color:var(--ink); }
+  .badge .label{ font-size:11px; color:var(--muted); margin-top:3px; }
+
+  footer{
+    text-align:center; padding:70px 6vw 46px; position:relative;
+  }
+  .seigaiha{ width:100%; height:34px; opacity:.5; margin-bottom:30px; }
+  footer .f-name{ font-family:'Playfair Display', serif; font-weight:700; font-size:20px; color:var(--accent-deep); }
+  footer p{ color:var(--muted); font-size:13.5px; margin-top:8px; }
+
+  @media (max-width: 880px){
+    .hero{ grid-template-columns:1fr; padding-top:130px; }
+    .hero-vert{ display:none; }
+    nav.links{ display:none; }
+    .m-toggle{ display:flex; }
+    .timeline::before{ left:22px; }
+    .tl-item, .tl-item:nth-child(even){ width:calc(100% - 70px); margin-left:70px; }
+    .tl-item:nth-child(odd) .tl-node, .tl-item:nth-child(even) .tl-node{ left:-56px; right:auto; }
+    .charm-grid{ grid-template-columns:1fr 1fr; }
+    .reflect-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 560px){
+    .charm-grid{ grid-template-columns:1fr; }
+    .hero-visual{ margin-top:20px; }
+  }
+</style>
+</head>
+<body>
+
+<span class="petal" style="left:8%; animation-duration:14s;"><svg viewBox="0 0 24 24"><path d="M12 2c3 3 3 7 0 10-3-3-3-7 0-10z" fill="#f3a8c8"/></svg></span>
+<span class="petal" style="left:34%; animation-duration:18s; animation-delay:3s;"><svg viewBox="0 0 24 24"><path d="M12 2c3 3 3 7 0 10-3-3-3-7 0-10z" fill="#e6b8ea"/></svg></span>
+<span class="petal" style="left:62%; animation-duration:16s; animation-delay:6s;"><svg viewBox="0 0 24 24"><path d="M12 2c3 3 3 7 0 10-3-3-3-7 0-10z" fill="#f3a8c8"/></svg></span>
+<span class="petal" style="left:83%; animation-duration:20s; animation-delay:1.5s;"><svg viewBox="0 0 24 24"><path d="M12 2c3 3 3 7 0 10-3-3-3-7 0-10z" fill="#cdb2e8"/></svg></span>
+
+<header class="nav" id="topNav">
+  <div class="logo"><span class="mark">陽</span> Khánh Hà</div>
+  <nav class="links">
+    <a href="#gioithieu" class="nav-link active" data-target="gioithieu">Giới thiệu</a>
+    <a href="#baitap" class="nav-link" data-target="baitap">Bài tập</a>
+    <a href="#hocduoc" class="nav-link" data-target="hocduoc">Học được</a>
+    <a href="#tongket" class="nav-link" data-target="tongket">Tổng kết</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div>
+      <div class="eyebrow">Portfolio môn học · Nhập môn Công nghệ số &amp; Ứng dụng AI</div>
+      <h1>Lê Khánh <em>Hà</em></h1>
+      <p class="hero-sub">Sinh viên Khoa <b>Ngôn ngữ và Văn hóa Nhật Bản</b>, Trường Đại học Ngoại
+        ngữ - Đại học Quốc gia Hà Nội. Trang portfolio này ghi lại hành trình học tập, các bài
+        thực hành và những điều mình đã học được trong quá trình làm quen với công nghệ số và
+        trí tuệ nhân tạo.</p>
+      <div class="hero-meta">
+        <div class="item"><div class="k">Mã sinh viên</div><div class="v">25042095</div></div>
+        <div class="item"><div class="k">Khoa</div><div class="v">Ngôn ngữ &amp; Văn hóa Nhật Bản</div></div>
+        <div class="item"><div class="k">Trường</div><div class="v">ĐH Ngoại ngữ - ĐHQGHN</div></div>
+      </div>
+      <div class="hero-actions">
+        <a href="#baitap" class="btn btn-primary">Xem bài tập →</a>
+        <a href="#tongket" class="btn btn-ghost">Đọc tổng kết</a>
+      </div>
+    </div>
+    <div class="hero-vert jp">言葉と文化を紡ぐ</div>
+    <div class="hero-visual">
+      <div class="frame">
+        <div class="ring"></div>
+        <img class="frame-img" src="avatar.jpg" alt="Ảnh cá nhân của Lê Khánh Hà"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="fallback">HK</span>
+        <div class="sticker s1">🌸</div>
+        <div class="sticker s2">扇</div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f6ecfb"/></svg>
+
+  <section id="gioithieu">
+    <div class="s-head reveal">
+      <div class="tag">Giới thiệu</div>
+      <h2 class="s-title">Một chút về mình</h2>
+    </div>
+    <div class="intro-wrap reveal">
+      <div class="intro-line"></div>
+      <p>Xin chào, mình là <b>Lê Khánh Hà</b>, hiện là sinh viên Khoa Ngôn ngữ và Văn hóa Nhật Bản,
+        Trường Đại học Ngoại ngữ - Đại học Quốc gia Hà Nội. Portfolio này được xây dựng trong quá
+        trình học môn Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo, ghi lại từng bài thực
+        hành cũng như những trải nghiệm, bài học mình tích lũy được trên hành trình làm quen với
+        công nghệ số — bên cạnh việc học ngôn ngữ và văn hóa Nhật Bản mà mình theo đuổi mỗi ngày.
+        <span class="note"> (Bạn có thể chỉnh sửa đoạn giới thiệu này cho đúng với câu chuyện của riêng mình nhé!)</span></p>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,60 L0,60 Z" fill="#fdf7fb"/></svg>
+
+  <section id="baitap">
+    <div class="s-head reveal">
+      <div class="tag">Bài tập</div>
+      <h2 class="s-title">Sáu bài thực hành — mục tiêu &amp; kết quả</h2>
+    </div>
+    <div class="timeline" id="tlList"></div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f6ecfb"/></svg>
+
+  <section id="hocduoc">
+    <div class="s-head reveal">
+      <div class="tag">Những điều học được</div>
+      <h2 class="s-title">Điều mình học được khi làm Portfolio</h2>
+    </div>
+    <div class="charm-grid">
+      <div class="charm reveal"><div class="ic">🗂️</div><p>Tổ chức và trình bày thông tin một cách khoa học, mạch lạc hơn thay vì rời rạc.</p></div>
+      <div class="charm reveal"><div class="ic">🔍</div><p>Tư duy phản biện khi tìm kiếm, chọn lọc và đánh giá độ tin cậy của nguồn thông tin.</p></div>
+      <div class="charm reveal"><div class="ic">🤖</div><p>Biết cách đặt câu hỏi và làm việc hiệu quả cùng các công cụ AI trong học tập.</p></div>
+      <div class="charm reveal"><div class="ic">🤝</div><p>Kỹ năng phối hợp nhóm và quản lý tiến độ công việc trên nền tảng trực tuyến.</p></div>
+      <div class="charm reveal"><div class="ic">🎨</div><p>Cân bằng giữa sự hỗ trợ của AI và dấu ấn sáng tạo của riêng mình.</p></div>
+      <div class="charm reveal"><div class="ic">📝</div><p>Kiên trì chỉnh sửa, hoàn thiện từng phần để có một sản phẩm trình bày chuyên nghiệp.</p></div>
+    </div>
+  </section>
+
+  <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,60 L0,60 Z" fill="#fdf7fb"/></svg>
+
+  <section id="tongket">
+    <div class="s-head reveal" style="margin:0 auto 40px; text-align:center;">
+      <div class="tag">Tổng kết</div>
+      <h2 class="s-title">Nhìn lại chặng đường</h2>
+    </div>
+    <p class="quote reveal">Mỗi bài tập nhỏ đều là một bước tiến, giúp mình <em>tự tin hơn</em>
+      trên hành trình làm quen với công nghệ số và AI.</p>
+    <div class="reflect-grid">
+      <div class="reflect-col reveal">
+        <h3>📚 Bài học nhận được</h3>
+        <p>Hoàn thành portfolio này là một trải nghiệm đáng nhớ đối với mình. Qua từng bài tập,
+          mình học được cách tổ chức thông tin khoa học hơn, biết đánh giá độ tin cậy của nguồn
+          tin và đặt câu hỏi rõ ràng khi làm việc cùng AI.</p>
+        <p>Đây cũng là dịp để mình rèn luyện sự kiên trì, cẩn thận và khả năng trình bày nội dung
+          một cách mạch lạc, chuyên nghiệp hơn.</p>
+      </div>
+      <div class="reflect-col reveal">
+        <h3>🌱 Quá trình trưởng thành</h3>
+        <p>Nhìn lại từng bài tập đã thực hiện, mình nhận ra bản thân đã tiến bộ rất nhiều — từ
+          những thao tác cơ bản cho đến việc biết ứng dụng AI một cách có trách nhiệm vào học
+          tập và nghiên cứu.</p>
+        <p>Mình hy vọng portfolio này sẽ là một dấu mốc đáng yêu, ghi lại sự cố gắng trong học kỳ
+          này, đồng thời là động lực để mình tiếp tục học hỏi và phát triển nhiều hơn nữa.</p>
+      </div>
+    </div>
+    <div class="badges">
+      <div class="badge reveal"><div class="in"><div class="num">06/06</div><div class="label">Bài hoàn thành</div></div></div>
+      <div class="badge reveal"><div class="in"><div class="num">100%</div><div class="label">Cố gắng</div></div></div>
+      <div class="badge reveal"><div class="in"><div class="num">A+</div><div class="label">Mục tiêu môn học</div></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <svg class="seigaiha" viewBox="0 0 200 20" preserveAspectRatio="none">
+      <g fill="none" stroke="#b25fdb" stroke-width="0.6">
+        <path d="M0,20 a10,10 0 0,1 20,0" /><path d="M20,20 a10,10 0 0,1 20,0" /><path d="M40,20 a10,10 0 0,1 20,0" />
+        <path d="M60,20 a10,10 0 0,1 20,0" /><path d="M80,20 a10,10 0 0,1 20,0" /><path d="M100,20 a10,10 0 0,1 20,0" />
+        <path d="M120,20 a10,10 0 0,1 20,0" /><path d="M140,20 a10,10 0 0,1 20,0" /><path d="M160,20 a10,10 0 0,1 20,0" />
+        <path d="M180,20 a10,10 0 0,1 20,0" />
+      </g>
+    </svg>
+    <div class="f-name">Lê Khánh Hà</div>
+    <p>Portfolio môn học Nhập môn Công nghệ số &amp; Ứng dụng AI · 2026</p>
+  </footer>
+</main>
+
+<script>
+// nav solid on scroll + active link tracking
+const navEl = document.getElementById('topNav');
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = ['gioithieu','baitap','hocduoc','tongket'].map(id=>document.getElementById(id));
+
+function onScroll(){
+  navEl.classList.toggle('solid', window.scrollY > 40);
+  let current = sections[0];
+  sections.forEach(s=>{ if(window.scrollY + 160 >= s.offsetTop) current = s; });
+  navLinks.forEach(l=> l.classList.toggle('active', l.dataset.target === current.id));
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+
+navLinks.forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    const target = document.getElementById(link.dataset.target);
+    window.scrollTo({top: target.offsetTop - 70, behavior:'smooth'});
+  });
+});
+
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Japanese kanji numerals used as timeline node markers — ties numbering to the student's own field of study
+const kanjiNum = ['一','二','三','四','五','六'];
+const exercises = [
+  {t:"Thao tác cơ bản với tệp tin và thư mục",
+   goal:"Xây dựng thói quen tổ chức dữ liệu cá nhân khoa học, dễ tìm kiếm và sao lưu an toàn.",
+   result:"Thiết lập hệ thống thư mục rõ ràng theo môn học/dự án, đặt tên tệp nhất quán và sao lưu định kỳ.",
+   link:"#"},
+  {t:"Tìm kiếm và đánh giá thông tin học thuật",
+   goal:"Biết khai thác các nguồn học thuật uy tín và đánh giá độ tin cậy của thông tin trước khi sử dụng.",
+   result:"Thành thạo tra cứu trên cơ sở dữ liệu học thuật và áp dụng tiêu chí đánh giá nguồn vào bài tập thực tế.",
+   link:"#"},
+  {t:"Viết Prompt hiệu quả cho các tác vụ học tập",
+   goal:"Rèn luyện kỹ năng đặt câu hỏi rõ ràng, có ngữ cảnh để khai thác AI phục vụ học tập, kể cả trong việc học tiếng Nhật.",
+   result:"Xây dựng được bộ prompt mẫu cho nhiều tình huống học tập, cải thiện rõ rệt chất lượng phản hồi từ AI.",
+   link:"#"},
+  {t:"Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm",
+   goal:"Phối hợp hiệu quả với nhóm qua các nền tảng trực tuyến, quản lý tiến độ minh bạch.",
+   result:"Áp dụng thành công công cụ cộng tác để phân chia công việc, theo dõi deadline và lưu trữ tài liệu nhóm.",
+   link:"#"},
+  {t:"Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung",
+   goal:"Kết hợp AI tạo sinh vào quy trình sáng tạo mà vẫn giữ được dấu ấn cá nhân.",
+   result:"Tạo ra sản phẩm nội dung hoàn chỉnh có hỗ trợ của AI, đồng thời tinh chỉnh phù hợp phong cách riêng.",
+   link:"#"},
+  {t:"Sử dụng AI có trách nhiệm trong học tập và nghiên cứu",
+   goal:"Nhận diện giới hạn của AI và sử dụng công cụ này một cách liêm chính trong học thuật.",
+   result:"Hình thành thói quen kiểm chứng thông tin do AI cung cấp và trích dẫn nguồn hỗ trợ một cách minh bạch.",
+   link:"#"},
+];
+const list = document.getElementById('tlList');
+exercises.forEach((ex,i)=>{
+  const item = document.createElement('div');
+  item.className = 'tl-item reveal';
+  item.innerHTML = `
+    <div class="tl-node jp">${kanjiNum[i]}</div>
+    <div class="tl-title">${ex.t}</div>
+    <div class="tl-chip goal"><div class="lbl" style="color:var(--accent);">🎯 MỤC TIÊU</div><p>${ex.goal}</p></div>
+    <div class="tl-chip result"><div class="lbl" style="color:var(--accent-deep);">✅ KẾT QUẢ ĐẠT ĐƯỢC</div><p>${ex.result}</p></div>
+    <a href="${ex.link}" target="_blank" rel="noopener" class="tl-drive">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      Xem trên Google Drive
+    </a>`;
+  list.appendChild(item);
+  io.observe(item);
+});
+</script>
+</body>
+</html>
