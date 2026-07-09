@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lê Khánh Hà — Portfolio</title>
+<title>Lê Khánh Hà Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
@@ -286,7 +286,7 @@
   <nav class="links">
     <a href="#gioithieu" class="nav-link active" data-target="gioithieu">Giới thiệu</a>
     <a href="#baitap" class="nav-link" data-target="baitap">Bài tập</a>
-    <a href="#hocduoc" class="nav-link" data-target="hocduoc">Học được</a>
+    <a href="#hocduoc" class="nav-link" data-target="hocduoc">Bài học nhận thức</a>
     <a href="#tongket" class="nav-link" data-target="tongket">Tổng kết</a>
   </nav>
 </header>
@@ -297,9 +297,7 @@
       <div class="eyebrow">Portfolio môn học · Nhập môn Công nghệ số &amp; Ứng dụng AI</div>
       <h1>Lê Khánh <em>Hà</em></h1>
       <p class="hero-sub">Sinh viên Khoa <b>Ngôn ngữ và Văn hóa Nhật Bản</b>, Trường Đại học Ngoại
-        ngữ - Đại học Quốc gia Hà Nội. Trang portfolio này ghi lại hành trình học tập, các bài
-        thực hành và những điều mình đã học được trong quá trình làm quen với công nghệ số và
-        trí tuệ nhân tạo.</p>
+        ngữ - Đại học Quốc gia Hà Nội. Những lúc không lên lớp, mình thường chọn cách nạp lại năng lượng bằng việc đắm chìm vào những bộ phim hay, tự thưởng cho bản thân một vài buổi mua sắm và lật mở những cuốn sách mới để tìm tòi, tích lũy thêm những điều hay ho xung quanh cuộc sống. Không gian Portfolio này không đơn thuần là một trang báo cáo bài tập kỹ thuật, mà chính là chiếc "hộp ký ức số" ghi lại trọn vẹn từng bước chân thay đổi của mình. Tại đây, mình lưu giữ từ những sản phẩm thực hành đầu tiên còn đầy bỡ ngỡ cho đến những bài tập hoàn chỉnh, kết tinh từ những trải nghiệm vô giá trong suốt học phần Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo.</p>
       <div class="hero-meta">
         <div class="item"><div class="k">Mã sinh viên</div><div class="v">25042095</div></div>
         <div class="item"><div class="k">Khoa</div><div class="v">Ngôn ngữ &amp; Văn hóa Nhật Bản</div></div>
@@ -314,7 +312,7 @@
     <div class="hero-visual">
       <div class="frame">
         <div class="ring"></div>
-        <img class="frame-img" src="avatar.jpg" alt="Ảnh cá nhân của Lê Khánh Hà"
+        <img class="frame-img" src="khanhha.jpg" alt="Ảnh cá nhân của Lê Khánh Hà"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <span class="fallback">HK</span>
         <div class="sticker s1">🌸</div>
@@ -337,7 +335,6 @@
         trình học môn Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo, ghi lại từng bài thực
         hành cũng như những trải nghiệm, bài học mình tích lũy được trên hành trình làm quen với
         công nghệ số — bên cạnh việc học ngôn ngữ và văn hóa Nhật Bản mà mình theo đuổi mỗi ngày.
-        <span class="note"> (Bạn có thể chỉnh sửa đoạn giới thiệu này cho đúng với câu chuyện của riêng mình nhé!)</span></p>
     </div>
   </section>
 
@@ -346,7 +343,7 @@
   <section id="baitap">
     <div class="s-head reveal">
       <div class="tag">Bài tập</div>
-      <h2 class="s-title">Sáu bài thực hành — mục tiêu &amp; kết quả</h2>
+      <h2 class="s-title">Các bài thực hành — mục tiêu &amp; quá trình thực hiện</h2>
     </div>
     <div class="timeline" id="tlList"></div>
   </section>
@@ -447,30 +444,30 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 // Japanese kanji numerals used as timeline node markers — ties numbering to the student's own field of study
 const kanjiNum = ['一','二','三','四','五','六'];
 const exercises = [
-  {t:"Thao tác cơ bản với tệp tin và thư mục",
-   goal:"Xây dựng thói quen tổ chức dữ liệu cá nhân khoa học, dễ tìm kiếm và sao lưu an toàn.",
-   result:"Thiết lập hệ thống thư mục rõ ràng theo môn học/dự án, đặt tên tệp nhất quán và sao lưu định kỳ.",
-   link:"#"},
+  {t:"Máy tính và các thiết bị ngoại vi",
+   goal:"Làm chủ các thao tác nền tảng trên hệ điều hành Windows để tổ chức, sắp xếp và lưu trữ tài liệu học tập một cách khoa học.",
+   result:"Thành thạo kỹ năng quản lý dữ liệu thông qua việc tạo mới, phân loại, sao chép, điều hướng tệp tin và khôi phục dữ liệu linh hoạt từ Thùng rác.",
+   link:"https://drive.google.com/file/d/1XTSj2tzusHz5i6-P0jIGzNs5MSr8yq5y/view?usp=drive_link"},
   {t:"Tìm kiếm và đánh giá thông tin học thuật",
-   goal:"Biết khai thác các nguồn học thuật uy tín và đánh giá độ tin cậy của thông tin trước khi sử dụng.",
-   result:"Thành thạo tra cứu trên cơ sở dữ liệu học thuật và áp dụng tiêu chí đánh giá nguồn vào bài tập thực tế.",
-   link:"#"},
+   goal:"Nâng cao tư duy nghiên cứu, định hình kỹ năng định vị và sàng lọc các nguồn học liệu mang tính học thuật cao.",
+   Quá trình thực hiện:"Khai thác và lập bảng đánh giá chuyên sâu độ tin cậy của các tài liệu từ Google Scholar, sách chuyên khảo và tạp chí chuyên ngành phục vụ cho đề tài cá nhân.",
+   link:"https://docs.google.com/document/d/1yCM7yIJD2LPd3a-X3LyH510vE-AG7OeC/edit?usp=drive_link&ouid=115701465242001315455&rtpof=true&sd=true"},
   {t:"Viết Prompt hiệu quả cho các tác vụ học tập",
-   goal:"Rèn luyện kỹ năng đặt câu hỏi rõ ràng, có ngữ cảnh để khai thác AI phục vụ học tập, kể cả trong việc học tiếng Nhật.",
-   result:"Xây dựng được bộ prompt mẫu cho nhiều tình huống học tập, cải thiện rõ rệt chất lượng phản hồi từ AI.",
-   link:"#"},
+   goal:"Nâng cao tư duy nghiên cứu, định hình kỹ năng định vị và sàng lọc các nguồn học liệu mang tính học thuật cao.",
+  Quá trình thực hiện:"Nâng cao tư duy nghiên cứu, định hình kỹ năng định vị và sàng lọc các nguồn học liệu mang tính học thuật cao.",
+   link:"https://docs.google.com/document/d/1m9E3ohgiy5JeMQmEtNo9aTfxr8yiqxzF/edit?usp=drive_link&ouid=115701465242001315455&rtpof=true&sd=true"},
   {t:"Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm",
-   goal:"Phối hợp hiệu quả với nhóm qua các nền tảng trực tuyến, quản lý tiến độ minh bạch.",
-   result:"Áp dụng thành công công cụ cộng tác để phân chia công việc, theo dõi deadline và lưu trữ tài liệu nhóm.",
-   link:"#"},
+   goal:"Tối ưu hóa kỹ năng tương tác trực tuyến và khẳng định năng lực quản trị, kết nối dữ liệu khi tham gia triển khai dự án tập thể.",
+   Quá trình thực hiện:"Ứng dụng đồng bộ hệ sinh thái số (Google Docs, Sheets, Drive, Meet và Zalo) để phân chia đầu việc, biên soạn tài liệu thời gian thực và quản lý tài nguyên nhóm.",
+   link:"https://docs.google.com/document/d/1KxtwZ5CCNxt1qim_nAyGU6y8GGl6mo0G/edit?usp=drive_link&ouid=115701465242001315455&rtpof=true&sd=true"},
   {t:"Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung",
-   goal:"Kết hợp AI tạo sinh vào quy trình sáng tạo mà vẫn giữ được dấu ấn cá nhân.",
-   result:"Tạo ra sản phẩm nội dung hoàn chỉnh có hỗ trợ của AI, đồng thời tinh chỉnh phù hợp phong cách riêng.",
-   link:"#"},
+   goal:"Khai thác linh hoạt và kết hợp sức mạnh của các công cụ AI thế hệ mới để nâng cấp tư duy thiết kế, truyền tải ý tưởng trực quan.",
+   Quá trình thực hiện:"Phối hợp nhịp nhàng ChatGPT, DALL-E và Canva AI để lên khung nội dung, sản xuất hình ảnh độc bản và hoàn thiện sản phẩm Infographic sinh động.",
+   link:"https://docs.google.com/document/d/1XrxVNv70qfQoJVbXNSHQxy68eqzz77pq/edit?usp=drive_link&ouid=115701465242001315455&rtpof=true&sd=true"},
   {t:"Sử dụng AI có trách nhiệm trong học tập và nghiên cứu",
-   goal:"Nhận diện giới hạn của AI và sử dụng công cụ này một cách liêm chính trong học thuật.",
-   result:"Hình thành thói quen kiểm chứng thông tin do AI cung cấp và trích dẫn nguồn hỗ trợ một cách minh bạch.",
-   link:"#"},
+   goal:"Ý thức rõ về ranh giới đạo đức công nghệ, xây dựng thói quen ứng dụng trí tuệ nhân tạo một cách văn minh, trung thực.",
+  Quá trình thực hiện:"Thấu hiểu tường minh các quy định chuyển đổi số của ĐHQGHN, từ đó vận dụng nghiêm túc các nguyên tắc liêm chính vào mọi sản phẩm học phần.",
+   link:"https://docs.google.com/document/d/1btpJmhekKA3czIgVPgQp50_psneTHsMr/edit?usp=drive_link&ouid=115701465242001315455&rtpof=true&sd=true"},
 ];
 const list = document.getElementById('tlList');
 exercises.forEach((ex,i)=>{
@@ -481,7 +478,7 @@ exercises.forEach((ex,i)=>{
     <div class="tl-title">${ex.t}</div>
     <div class="tl-chip goal"><div class="lbl" style="color:var(--accent);">🎯 MỤC TIÊU</div><p>${ex.goal}</p></div>
     <div class="tl-chip result"><div class="lbl" style="color:var(--accent-deep);">✅ KẾT QUẢ ĐẠT ĐƯỢC</div><p>${ex.result}</p></div>
-    <a href="${ex.link}" target="_blank" rel="noopener" class="tl-drive">
+    <a href="https://drive.google.com/drive/folders/13XcrVusAIjoLbzwEuZ0LUpR0ePwtZ9ez?usp=drive_link" target="_blank" rel="noopener" class="tl-drive">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
       Xem trên Google Drive
     </a>`;
